@@ -5,6 +5,8 @@ import com.sun.javaws.exceptions.ErrorCodeResponseException;
  * You can use this code to retrieve localized error messages.
  */
 
+
+// TODO this code is yet to be tested!!
 public class ExceptionHandler extends Exception{
 
     private static final long serialVersionUID = 7718828512143293558L;
