@@ -1,5 +1,6 @@
 package defconbot;
 
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -9,25 +10,23 @@ import javax.swing.JTextField;
 
 
 public class ChatBot extends JFrame {
-
-    //Typing Area:
-    private JTextField txtEnter = new JTextField();
-
-    //Chat Area:
-    private JTextArea txtChat = new JTextArea();
+    private JTextField txtEnter = new JTextField();  //Typing Area: 
+    private JTextArea txtChat = new JTextArea(); //Chat Area:
 
     public static void main(String[] args){
         ChatBot chatBot = new ChatBot();
     }
     
     public ChatBot() {
+        //super("Testing Testing Testing");
+        setLayout(new FlowLayout());
         //Frame Attributes:
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(600, 600);
         this.setVisible(true);
         this.setResizable(false);
         this.setLayout(null);
-        this.setTitle("Java Chat Bot");
+        this.setTitle("DefConBot");
 
         //txtEnter Attributes:
         txtEnter.setLocation(2, 540);
@@ -35,10 +34,11 @@ public class ChatBot extends JFrame {
 
         //txtEnter Action Event:
         txtEnter.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent arg0) {
+            public void actionPerformed(ActionEvent event) {
                 String uText = txtEnter.getText();
                 txtChat.append("You: " + uText + "\n");
-
+                UserText userText = new UserText(uText);
+                /*
                 if(uText.contains("hi")){
                     botSay("Hello there!");
                 }
@@ -63,6 +63,7 @@ public class ChatBot extends JFrame {
                         botSay("???");
                     }
                 }
+                */
                 txtEnter.setText("");
             }
         });
