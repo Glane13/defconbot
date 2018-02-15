@@ -1,6 +1,5 @@
 package defconbot;
 
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,8 +17,6 @@ public class ChatBot extends JFrame {
     }
     
     public ChatBot() {
-        //super("Testing Testing Testing");
-        setLayout(new FlowLayout());
         //Frame Attributes:
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(600, 600);
@@ -27,43 +24,19 @@ public class ChatBot extends JFrame {
         this.setResizable(false);
         this.setLayout(null);
         this.setTitle("DefConBot");
+        UserText userText = new UserText();
 
         //txtEnter Attributes:
         txtEnter.setLocation(2, 540);
         txtEnter.setSize(590, 30);
-
+         
         //txtEnter Action Event:
+        
         txtEnter.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent event) {
                 String uText = txtEnter.getText();
                 txtChat.append("You: " + uText + "\n");
-                UserText userText = new UserText(uText);
-                /*
-                if(uText.contains("hi")){
-                    botSay("Hello there!");
-                }
-                else if(uText.contains("how are you")){
-                    int decider = (int) (Math.random()*2+1);
-                    if(decider == 1){
-                        botSay("I'm doing well, thanks");
-                    }
-                    else if(decider == 2){
-                        botSay("Not too bad");
-                    }
-                }
-                else{
-                    int decider = (int) (Math.random()*3+1);
-                    if(decider == 1){
-                        botSay("I didn't get that");
-                    }
-                    else if(decider == 2){
-                        botSay("Please rephrase that");
-                    }
-                    else if(decider == 3){
-                        botSay("???");
-                    }
-                }
-                */
+                txtChat.append("Bot: " + userText.getResponse(uText) + "\n");
                 txtEnter.setText("");
             }
         });
@@ -76,10 +49,8 @@ public class ChatBot extends JFrame {
         //Add Items To Frame:
         this.add(txtEnter);
         this.add(txtChat);
-    }
-
-    public void botSay(String s){
-        txtChat.append("AI: " + s + "\n");
-    }
-
+    }    
+//    public void botSay(String s){
+//        txtChat.append("AI: " + s + "\n");
+//    }
 }
