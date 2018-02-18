@@ -1,14 +1,37 @@
 package defconbot;
 //import javax.swing.JOptionPane;
+//import java.util.List;
+import java.util.ArrayList;
+//import java.util.Collection;
+//import java.util.Iterator;
+//import java.util.StringTokenizer;
+import java.util.Arrays;
 public class UserText{
     String userText = "user text";
-    String response = "response";
-    public String getResponse(String inputText) {
-        userText = inputText; 
-        response = ("The Bot says that you said: " + userText);
+    String response = "response";   
+    public String getIntent(String inputText) {
+        inputText = inputText.toUpperCase();
+        //ArrayList because I want fast searching and will not be inserting elements
+        //ArrayList<String> tokens = new ArrayList<>(
+        //Arrays.asList(inputText.split(" ")));
+        //System.out.printf("Number of elements: %d%nThe tokens are:%n", tokens.size(), tokens);
+        if(inputText.contains("WHEN")|| inputText.contains("TIME")){
+            WhenIntent whenIntent = new WhenIntent();
+            Session session = whenIntent.populateIntent(inputText);
+            response = ("The session in " + session.getLocation () + " with speaker   " + session.getSpeaker() + " is at " + session.getTime());       
+            } else if(inputText.contains("WHERE")|| inputText.contains("VENUE")|| inputText.contains("LOCATION")) {
+                response = ("Where Intent");
+            } else if(inputText.contains("WHO")|| inputText.contains("SPEAKER")|| inputText.contains("PRESENTER")) {
+                response = ("Who Intent");
+            } else{
+                response = ("Not a When, Where or Who Intent ");
+            }
         return response;
     }
 }
+
+
+
         /*        
         if(uText.contains("hi")){
             ChatBot.botSay("Hello there!");

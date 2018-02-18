@@ -36,7 +36,7 @@ public class ChatBot extends JFrame {
             public void actionPerformed(ActionEvent event) {
                 String uText = txtEnter.getText();
                 txtChat.append("You: " + uText + "\n");
-                txtChat.append("Bot: " + userText.getResponse(uText) + "\n");
+                txtChat.append("Bot: " + userText.getIntent(uText) + "\n");
                 txtEnter.setText("");
             }
         });
