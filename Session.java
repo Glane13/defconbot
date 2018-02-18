@@ -4,7 +4,7 @@ public class Session {
     String location  =  "x";
     String time      = "x";
     String title     = "x";
-    public void setSpeaker(String firstName){
+    public void setSpeaker(String speaker){
         this.speaker = speaker;
     }  
     public String getSpeaker(){

@@ -1,6 +1,4 @@
 package defconbot;
-import java.util.ArrayList;
-import java.util.Arrays;
 public class UserText{
     String userText = "user text";
     String response = "response";   
@@ -9,14 +7,24 @@ public class UserText{
         if(inputText.contains("WHEN")|| inputText.contains("TIME")){
             WhenIntent whenIntent = new WhenIntent();
             Session session = whenIntent.populateIntent(inputText);
-            response = ("The session in " + session.getLocation () + " with speaker   " + session.getSpeaker() + " is at " + session.getTime());       
-            } else if(inputText.contains("WHERE")|| inputText.contains("VENUE")|| inputText.contains("LOCATION")) {
-                response = ("Where Intent");
-            } else if(inputText.contains("WHO")|| inputText.contains("SPEAKER")|| inputText.contains("PRESENTER")) {
-                response = ("Who Intent");
-            } else{
-                response = ("Not a When, Where or Who Intent ");
-            }
+            response = ("The session with " + session.getSpeaker());
+            response += (" in "             + session.getLocation().toLowerCase() + "\n");
+            response += ("Bot:    is at "   + session.getTime());    
+        } else if(inputText.contains("WHERE")|| inputText.contains("VENUE")|| inputText.contains("LOCATION")) {
+            WhereIntent whereIntent = new WhereIntent();
+            Session session = whereIntent.populateIntent(inputText);
+            response = ("The session with " + session.getSpeaker());
+            response += (" at "             + session.getTime() + "\n");                
+            response += ("Bot:   is in "    + session.getLocation().toLowerCase());
+        } else if(inputText.contains("WHO")|| inputText.contains("SPEAKER")|| inputText.contains("PRESENTER")) {
+            WhoIntent whoIntent = new WhoIntent();
+            Session session = whoIntent.populateIntent(inputText);
+            response = ("The session in "   + session.getLocation().toLowerCase());
+            response += (" at "              + session.getTime() + "\n");
+            response += ("Bot:   is with "    + session.getSpeaker());
+        } else{
+                response = ("Sorry I can only answer questions about who, where and when");
+        }
         return response;
     }
 }
