@@ -48,7 +48,8 @@ public class testingDataStore {
             friday.addToInnerArray(2,2,"Jonathan Brossard (endrazine)");
             friday.addToInnerArray(3,2,"'Introduction the Wichcraft Compiler Collection: Towards universal code theft'");
 
-            
+
+//            thursday.addToInnerArray(2,0,"Jessica");
         } catch (Exception e) {
             System.out.println(e);
         }
