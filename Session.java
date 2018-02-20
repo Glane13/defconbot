@@ -11,6 +11,8 @@ public class Session {
         this.time = time;
         this.title = title;
     }
+    public Session () {
+    }
     public void setSpeaker(String speaker){
         this.speaker = speaker;
     }  
