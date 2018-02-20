@@ -1,9 +1,16 @@
 package defconbot;
 public class Session {
-    String speaker = "x";
-    String location  =  "x";
-    String time      = "x";
-    String title     = "x";
+    String speaker = "";
+    String location  =  "";
+    String time      = "";
+    String title     = "";
+    
+    public Session (String speaker, String location, String time, String title) {
+        this.speaker=speaker;
+        this.location = location;
+        this.time = time;
+        this.title = title;
+    }
     public void setSpeaker(String speaker){
         this.speaker = speaker;
     }  
