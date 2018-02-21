@@ -1,5 +1,6 @@
 package defconbot;
 
+//import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -7,46 +8,72 @@ import javax.swing.JFrame;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
-//import java.awt.FlowLayout;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import javax.swing.*;
 
-
-public class ChatBot extends JFrame {
-    private JLabel txtWelcome = new JLabel();
-    private JTextArea txtChat = new JTextArea(); //Dialog area
-    private JTextField txtEnter = new JTextField();  //User input area
+public class ChatBot extends JFrame  {
+    JFrame frame = new JFrame();
+    JPanel welcomePanel = new JPanel(new BorderLayout());
+    JPanel innerWelcomePanel = new JPanel(new BorderLayout());
+    JPanel dialogPanel  = new JPanel(new BorderLayout());
+    JPanel innerDialogPanel = new JPanel(new BorderLayout());
+    JPanel inputPanel   = new JPanel(new BorderLayout());
+    JLabel welcomeImage = new JLabel("Welcome Image");
+    JLabel welcomeText  = new JLabel("Welcome!");
+    JTextArea txtChat   = new JTextArea();
+    JTextField txtEnter = new JTextField("Type your question here");
     
     public static void main(String[] args){
         ChatBot chatBot = new ChatBot();
+        
     }
     
     public ChatBot() {
-        //Frame Attributes:
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(700,600);
-        this.setVisible(true);
-        this.setResizable(false);
-        this.setLayout(null);
-        this.setTitle("DefConBot");
-        UserText userText = new UserText();
-    
-        //txtWelcome Attributes:
-        txtWelcome.setLocation(20, 2);
-        txtWelcome.setSize(660, 150);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(700,800);
+        frame.setTitle("DEFCONBOT");
+        frame.setVisible(true);
+        frame.setLayout(new BorderLayout());
         
-        //txtChat Attributes:
-        txtChat.setLocation(20, 252);
-        txtChat.setSize(660, 150);
-        txtChat.setEditable(false);
+        welcomePanel.add(welcomeImage, BorderLayout.NORTH);
+        welcomePanel.add(welcomeText,BorderLayout.CENTER);
+        welcomePanel.setBackground(Color.CYAN);
+        welcomePanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+        
+        dialogPanel.add(txtChat,BorderLayout.SOUTH); 
+        dialogPanel.setBackground(Color.CYAN);
+        dialogPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+        
+        inputPanel.setBackground(Color.CYAN);      
+        inputPanel.add(txtEnter);
+        inputPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 
-        //txtEnter Attributes:
-        txtEnter.setLocation(20, 504);
-        txtEnter.setSize(660, 30);
+        frame.add(welcomePanel,BorderLayout.NORTH);
+        frame.add(dialogPanel,BorderLayout.CENTER);
+        frame.add(inputPanel,BorderLayout.SOUTH);
         
-        //Add Items To Frame:
-        this.add(txtWelcome);
-        this.add(txtChat);
-        this.add(txtEnter);
+        Icon defconImage = new ImageIcon(getClass().getResource( "defcon.png"));
+        welcomeImage.setIcon(defconImage);
+          
+        String message = ("<html>   <h1>DEFCONBOT</h1><br/");
+        message += ("    I'm a Baby Bot ... but I'm trying to get better <br/>");
+        message += ("    I can answer Who? Where? and When? questions about DefCon speakers <br/>");
+        message += ("    I can only understand time when it is written like this: 10:45 <br/>");
+        message += ("    I can only answer questions with two parameters like: Who is speaking in Room 7 at 14:00? <br/>");
+        message += ("    I need to get better at checking that the times entered are correct <br/>");
+        message += ("    Also, I need to work with Jonas to get information from his array <br/>");
+        message += ("</html>");    
+        welcomeText.setText(message); 
+       
+        UserText userText = new UserText();
         
+         SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                txtEnter.requestFocus();
+            }
+         });
+   
         //txtEnter Action Event: 
         txtEnter.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent event) {
@@ -56,23 +83,5 @@ public class ChatBot extends JFrame {
                 txtEnter.setText("");
             }
         });
-        String message = ("Welcome! " +  "\n");
-        message = ("<html>Welcome <br/>");
-        message += ("I'm a Baby Bot ... but I'm trying to get better <br/>");
-        message += ("I can answer Who? Where? and When? questions about DefCon speakers <br/>");
-        message += ("I can only understand time when it is written like this: 10:45 <br/>");
-        message += ("I can only answer questions with two parameters like: Who is speaking in Room 7 at 14:00> <br/>");
-        message += ("I need to get better at checking that the times entered are correct <br/>");
-        message += ("Also, I need to work with Jonas to get information from his array <br/>");
-        message += ("</html>");
-        txtWelcome.setText(message); 
-        
-        //Add Items To Frame:
-        this.add(txtWelcome);
-        this.add(txtChat);
-        this.add(txtEnter);
-    }    
-//    public void botSay(String s){
-//        txtChat.append("AI: " + s + "\n");
-//    }
+    }
 }

@@ -1,27 +1,53 @@
 package defconbot;
+import java.util.ArrayList;
+import java.util.Iterator;
 public class UserText{
     String userText = "user text";
-    String response = "response";   
+    String response = "response"; 
+    String speaker = "speaker";
     public String getIntent(String inputText) {
         inputText = inputText.toUpperCase();
         if(inputText.contains("WHEN")|| inputText.contains("TIME")){
             WhenIntent whenIntent = new WhenIntent();
-            Session session = whenIntent.populateIntent(inputText);
-            response = ("The session with " + session.getSpeaker());
-            response += (" in "             + session.getLocation().toLowerCase() + "\n");
-            response += ("Bot:    is at "   + session.getTime());    
+            ArrayList<Session> arrayOfSessions = whenIntent.populateIntent(inputText);
+            //System.out.println("arrayOfSessins: " + arrayOfSessions);
+            ArrayList<String> arrayResponse = new ArrayList();
+            for (Session session : arrayOfSessions) {
+                String speaker = session.getSpeaker();
+                String location = session.getLocation();
+                String time = session.getTime();
+                arrayResponse.add("Speaker is" + speaker + " and the location is " + location + " and the time is " + time + "\n");
+            }
+            String response = String.join(",", arrayResponse);
+            this.response = response;
+            //System.out.println("response: " + response);
+            //System.out.println("array Response" + arrayResponse);
         } else if(inputText.contains("WHERE")|| inputText.contains("VENUE")|| inputText.contains("LOCATION")) {
             WhereIntent whereIntent = new WhereIntent();
-            Session session = whereIntent.populateIntent(inputText);
-            response = ("The session with " + session.getSpeaker());
-            response += (" at "             + session.getTime() + "\n");                
-            response += ("Bot:   is in "    + session.getLocation().toLowerCase());
+            ArrayList<Session> arrayOfSessions = whereIntent.populateIntent(inputText);
+            //System.out.println("arrayOfSessins: " + arrayOfSessions);
+            ArrayList<String> arrayResponse = new ArrayList();
+            for (Session session : arrayOfSessions) {
+                String speaker = session.getSpeaker();
+                String location = session.getLocation();
+                String time = session.getTime();
+                arrayResponse.add("Speaker is" + speaker + " and the location is " + location + " and the time is " + time + "\n");
+            }
+            String response = String.join(",", arrayResponse);
+            this.response = response;
         } else if(inputText.contains("WHO")|| inputText.contains("SPEAKER")|| inputText.contains("PRESENTER")) {
             WhoIntent whoIntent = new WhoIntent();
-            Session session = whoIntent.populateIntent(inputText);
-            response = ("The session in "   + session.getLocation().toLowerCase());
-            response += (" at "              + session.getTime() + "\n");
-            response += ("Bot:   is with "    + session.getSpeaker());
+            ArrayList<Session> arrayOfSessions = whoIntent.populateIntent(inputText);
+            //System.out.println("arrayOfSessins: " + arrayOfSessions);
+            ArrayList<String> arrayResponse = new ArrayList();
+            for (Session session : arrayOfSessions) {
+                String speaker = session.getSpeaker();
+                String location = session.getLocation();
+                String time = session.getTime();
+                arrayResponse.add("Speaker is" + speaker + " and the location is " + location + " and the time is " + time + "\n");
+            }
+            String response = String.join(",", arrayResponse);
+            this.response = response;
         } else{
                 response = ("Sorry I can only answer questions about who, where and when");
         }
@@ -63,3 +89,17 @@ public class UserText{
         //ArrayList<String> tokens = new ArrayList<>(
         //Arrays.asList(inputText.split(" ")));
         //System.out.printf("Number of elements: %d%nThe tokens are:%n", tokens.size(), tokens);
+
+//response += (" in "             + arrayOfSessions.getLocation().toLowerCase() + "\n");
+            //response += ("Bot:    is at "   + arrayOfSessions.getTime());    
+
+//WhereIntent whereIntent = new WhereIntent();
+            //ArrayList<Session> arrayOfSessions =  whereIntent.populateIntent(inputText);
+            //response = ("The session with " + arrayOfSessions.getSpeaker());
+            //response += (" at "             + arrayOfSessions.getTime() + "\n");                
+            //response += ("Bot:   is in "    + arrayOfSessions.getLocation().toLowerCase());
+
+    //ArrayList<Session> arrayOfSessions =  whoIntent.populateIntent(inputText);
+            //response = ("The session in "   + arrayOfSessions.getLocation().toLowerCase());
+            //response += (" at "              + arrayOfSessions.getTime() + "\n");
+            //response += ("Bot:   is with "    + arrayOfSessions.getSpeaker());

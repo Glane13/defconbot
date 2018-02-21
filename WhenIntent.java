@@ -1,16 +1,20 @@
 package defconbot;
+import java.util.ArrayList;
 import java.util.regex.*;
 public class WhenIntent extends Intent {
     @Override
-    Session populateIntent(String inputText){    
+    ArrayList<Session> populateIntent(String inputText){    
         session.setSpeaker     (getSpeaker(inputText));
-        session.setTime        (getTime(inputText));
         session.setLocation    (getLocation(inputText));
-        return session;  
+        //session.setTime        (getTime(inputText));
+        Engine engine = new Engine();
+        arrayOfSessions = engine.mainEngine(session);
+        return arrayOfSessions;  
     }
-    @Override
+/*    @Override
     public String getTime(String inputText){
-        String time = "<get time from Jonas>";
+        String time = "<get time from session library>";
         return time;
     }
+*/
 }
