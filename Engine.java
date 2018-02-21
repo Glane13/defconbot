@@ -3,17 +3,15 @@ import java.util.Iterator;
 
 public class Engine {
 
-    public ArrayList mainEngine () {
+    public ArrayList mainEngine (Session partialSession) {
 
         InitialiseDataV3 newData = new InitialiseDataV3();
         Iterator itr = newData.Population().iterator();
-
-        Session partialGSession = new Session("", "Track Three", "", "");
-        Session partialGrahamSession = newData.completeSession(partialGSession);
-        String speaker = partialGrahamSession.getSpeaker();
-        String location = partialGrahamSession.getLocation();
-        String time = partialGrahamSession.getTime();
-        String title = partialGrahamSession.getTitle();
+        
+        String speaker = partialSession.getSpeaker();
+        String location = partialSession.getLocation();
+        String time = partialSession.getTime();
+        String title = partialSession.getTitle();
 
         ArrayList<Object> returnList = new ArrayList<>();
 
