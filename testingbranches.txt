@@ -1,3 +1,0 @@
-This is to test how branching works.
-
-I am going to merge this file with master.
