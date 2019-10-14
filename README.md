@@ -1,4 +1,7 @@
 # defconbot
+
+[demonstrating the use of Java and Object Oriented Programming]
+
 This was a university group project written by myself one other student in February 2018.
 
 It was submitted as part of the University of Liverpool Master's Degree in Web Science and Big Data. It was the second assignment in the module about Object Oriented Programming in Java.
